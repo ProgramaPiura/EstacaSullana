@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afiche Instituto Estaca Sullana</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fondo gris claro */
+        }
+        .afiche-card {
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* sombra-xl */
+            padding: 1.5rem; /* Menos padding en móviles por defecto */
+            max-width: 90vw; /* Ancho responsivo */
+            margin: 1.5rem auto; /* Menos margen en móviles por defecto */
+            text-align: center;
+        }
+
+        /* Ajustes de padding y margen para pantallas más grandes */
+        @media (min-width: 640px) { /* sm breakpoint */
+            .afiche-card {
+                padding: 2rem;
+                margin: 2rem auto;
+            }
+        }
+        @media (min-width: 768px) { /* md breakpoint */
+            .afiche-card {
+                padding: 3rem;
+            }
+        }
+
+        .day-heading {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem; /* Tamaño de fuente responsivo */
+            font-weight: 700; /* negrita */
+            color: #1f2937; /* Gris-900 */
+        }
+        /* Ajustes de fuente para pantallas más grandes */
+        @media (min-width: 640px) {
+            .day-heading {
+                font-size: 1.5rem;
+            }
+        }
+
+        .class-item {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 1rem;
+            padding-left: 1rem; /* Menos padding en móviles por defecto */
+        }
+        /* Ajustes de padding para pantallas más grandes */
+        @media (min-width: 640px) {
+            .class-item {
+                padding-left: 1.5rem;
+            }
+        }
+
+        .class-icon {
+            font-size: 1.3rem; /* Tamaño de fuente responsivo */
+            margin-right: 0.5rem; /* Menos margen en móviles por defecto */
+            line-height: 1.2;
+        }
+        /* Ajustes de fuente y margen para pantallas más grandes */
+        @media (min-width: 640px) {
+            .class-icon {
+                font-size: 1.5rem;
+                margin-right: 0.75rem;
+            }
+        }
+
+        .class-details {
+            flex-grow: 1;
+        }
+        .class-details p {
+            margin: 0.2rem 0; /* my-1 */
+            font-size: 0.95rem; /* Tamaño de fuente responsivo */
+            color: #374151; /* Gris-700 */
+        }
+        /* Ajustes de fuente para pantallas más grandes */
+        @media (min-width: 640px) {
+            .class-details p {
+                font-size: 1rem;
+            }
+        }
+        .class-details strong {
+            color: #111827; /* Gris-900 */
+        }
+
+        /* Estilos para el nuevo botón "blob" */
+        .button {
+            position: relative;
+            background-color: #4f46e5; /* indigo-600 */
+            color: #ffffff;
+            padding: 0.6rem 1.2rem; /* padding responsivo */
+            border-radius: 0.75rem; /* rounded-xl */
+            text-decoration: none;
+            font-weight: 600; /* semibold */
+            overflow: hidden;
+            cursor: pointer;
+            border: none; /* Eliminar el borde predeterminado del botón */
+            display: inline-flex; /* Para centrar el texto verticalmente */
+            align-items: center; /* Para centrar el texto verticalmente */
+            justify-content: center; /* Para centrar el texto horizontalmente */
+            z-index: 1; /* Asegura que el contenido interno esté sobre las "bolitas" */
+            margin-top: 0.5rem;
+            font-size: 0.9rem; /* Tamaño de fuente responsivo para el botón */
+        }
+        /* Ajustes de padding y fuente para pantallas más grandes */
+        @media (min-width: 640px) {
+            .button {
+                padding: 0.75rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        .button .blob1,
+        .button .blob2 {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2); /* Blanco semitransparente */
+            border-radius: 50%;
+            opacity: 0.5;
+            transition: transform 0.8s ease-out;
+            pointer-events: none; /* Asegura que las bolitas no interfieran con clics */
+        }
+
+        .button .blob1 {
+            width: 120px;
+            height: 120px;
+            left: -30px;
+            top: -30px;
+            transform: translate(0, 0);
+        }
+
+        .button .blob2 {
+            width: 80px;
+            height: 80px;
+            right: -20px;
+            bottom: -20px;
+            transform: translate(0, 0);
+        }
+
+        .button:hover .blob1 {
+            transform: scale(1.5) translate(20px, 20px);
+            opacity: 0.7;
+        }
+
+        .button:hover .blob2 {
+            transform: scale(1.5) translate(-20px, -20px);
+            opacity: 0.7;
+        }
+
+        .button .inner {
+            position: relative;
+            z-index: 2; /* Asegura que el texto esté por encima de las bolitas */
+            color: inherit; /* Hereda el color del texto del botón */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="afiche-card">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-indigo-700 mb-6">¡Inicia el segundo periodo de Institutos!</h1>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-8">Estaca Sullana</h2>
+
+        <p class="text-base md:text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
+            Prepárate para fortalecer tu fe y aprender más sobre el evangelio. Tenemos cursos para todos, impartidos por excelentes maestros. ¡No te lo pierdas!
+        </p>
+
+        <div class="space-y-6 text-left">
+            <!-- Clases para Miércoles -->
+            <div class="day-heading">🔵 Miércoles:</div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Diego Arias</p>
+                    <p><strong>Teléfono:</strong> 935757039</p>
+                    <p><strong>Curso:</strong> Jesucristo y el Evangelio Sempiterno</p>
+                    <p><strong>Hora:</strong> 7:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1642283" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Rocio Mauricio</p>
+                    <p><strong>Teléfono:</strong> 993897165</p>
+                    <p><strong>Curso:</strong> Preparación Misional</p>
+                    <p><strong>Hora:</strong> 8:00 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1642284" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Rocio Mauricio</p>
+                    <p><strong>Teléfono:</strong> 993897165</p>
+                    <p><strong>Curso:</strong> Fundamentos de la Restauración</p>
+                    <p><strong>Hora:</strong> 9:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1642286" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clases para Jueves -->
+            <div class="day-heading">🟢 Jueves:</div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Fam. Gallo Correa</p>
+                    <p><strong>Teléfono:</strong> 985000901</p>
+                    <p><strong>Curso:</strong> La Familia Eterna</p>
+                    <p><strong>Hora:</strong> 7:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1640239" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Patricia Crisanto</p>
+                    <p><strong>Teléfono:</strong> 942940551</p>
+                    <p><strong>Curso:</strong> Enseñanzas y Doctrinas del Libro de Mormón</p>
+                    <p><strong>Hora:</strong> 7:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1642380" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clases para Viernes -->
+            <div class="day-heading">🟣 Viernes:</div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Hebert Alburquerque</p>
+                    <p><strong>Teléfono:</strong> 969337259</p>
+                    <p><strong>Curso:</strong> Lecciones de Preparación para la Vida</p>
+                    <p><strong>Hora:</strong> 7:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana / Híbrido</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1640502" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clases para Sábado -->
+            <div class="day-heading">🔴 Sábado:</div>
+            <div class="class-item">
+                <span class="class-icon">👉</span>
+                <div class="class-details">
+                    <p><strong>Maestro:</strong> Patrick Carmen</p>
+                    <p><strong>Teléfono:</strong> 983238939</p>
+                    <p><strong>Curso:</strong> Jesucristo y el Evangelio Sempiterno</p>
+                    <p><strong>Hora:</strong> 7:30 p.m.</p>
+                    <p><strong>Lugar:</strong> Estaca Sullana</p>
+                    <a href="https://myinstitute.churchofjesuschrist.org/signup/1642283" target="_blank" class="button">
+                        <div class="blob1"></div>
+                        <div class="blob2"></div>
+                        <div class="inner">¡Inscríbete!</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-2xl md:text-3xl font-bold text-green-700 mt-10">¡Te esperamos! 🙏</p>
+    </div>
+</body>
+</html>
